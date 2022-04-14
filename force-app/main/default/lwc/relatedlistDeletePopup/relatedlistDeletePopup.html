@@ -1,0 +1,20 @@
+<!--
+  @description       : LWC to mimic Salesforce standard delete confirmation popup
+  @author            : Agustín M. Etcheverry
+  @last modified on  : 04-15-2022
+  @last modified by  : Agustín M. Etcheverry
+-->
+<template>
+    <template if:true={showModal}>
+        <c-relatedlist-modal onclosedialog={handleDialogClose}>
+            <span slot="header">{header}</span>
+            <slot class="slds-align_absolute-center">
+                {body}
+            </slot>
+            <span slot="footer" >
+                <lightning-button variant="neutral" label="Cancelar" title="Cancelar" onclick={handleClose} ></lightning-button> <!--TODO-LABEL-->
+                <lightning-button variant="brand" label="Eliminar" title="Eliminar" onclick={handleDelete} class="slds-m-left_x-small"></lightning-button> <!--TODO-LABEL-->
+            </span>
+        </c-relatedlist-modal>
+    </template>
+</template>

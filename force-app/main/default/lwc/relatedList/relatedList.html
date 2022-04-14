@@ -1,0 +1,62 @@
+<!--
+  @description       : LWC to mimic Salesforce standard related list
+  @author            : Agustín M. Etcheverry
+  @last modified on  : 04-15-2022
+  @last modified by  : Agustín M. Etcheverry
+-->
+<template>
+    <template if:true={state.showRelatedList}>
+
+        <!-- ACTION COMPONENTS -->
+        <c-relatedlist-new-edit-popup onrefreshdata={handleRefreshData}></c-relatedlist-new-edit-popup>
+        <c-relatedlist-delete-popup onrefreshdata={handleRefreshData}></c-relatedlist-delete-popup>
+
+        <!-- RELATED LIST -->
+        <lightning-layout class="slds-m-top_x-small">
+            <article class="slds-card slds-card_boundary">
+
+                <!-- HEADER -->
+                <div class="slds-page-header slds-page-header_joined slds-page-header_bleed slds-shrink-none test-headerRegion slds-is-relative slds-page-header-no-border">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <!-- Icono -->
+                        <span force-recordavatar_recordavatar="" class="record-avatar-container slds-avatar slds-avatar_small icon slds-m-right_small" style={iconStyle}>
+                            <img force-recordavatar_recordavatar="" src={iconUrl} title={state.title} alt="">
+                        </span>
+                        <!-- Nombre de la lista relacionada -->
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <a class="slds-card__header-link" onclick={handleGotoRelatedList}>{state.title}</a>
+                            </h2>
+                        </div>
+                        <!-- Boton nuevo registro -->
+                        <div class="slds-no-flex" if:true={state.showNewButton}>
+                            <lightning-button label="Nuevo" onclick={handleCreateRecord}></lightning-button> <!--TODO-LABEL-->
+                        </div>
+                    </header>
+                </div>
+
+                <!-- TABLE -->
+                <template if:true={hasRecords}>
+                    <div>
+                        <lightning-datatable class="related-list"
+                                             onrowaction={handleRowAction}
+                                             columns={state.columns}
+                                             data={state.records}
+                                             key-field="Id"
+                                             hide-checkbox-column="true"
+                                             resize-column-disabled="true"
+                                             is-loading={isLoadingTable}>
+                        </lightning-datatable>
+                    </div>
+
+                    <!-- FOOTER -->
+                    <footer class="slds-card__footer" if:true={showViewMore}>
+                        <a onclick={handleViewMore}>Ver Más</a> <!--TODO-LABEL-->
+                    </footer>
+                </template>
+
+            </article>
+        </lightning-layout>
+
+    </template>
+</template>

@@ -1,0 +1,49 @@
+<!--
+  @description       : LWC to mimic Salesforce standard modal
+  @author            : Agustín M. Etcheverry
+  @last modified on  : 04-15-2022
+  @last modified by  : Agustín M. Etcheverry
+-->
+<template>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+        aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+
+            <!-- HEADER -->
+            <header class="slds-modal__header">
+
+                <!-- X para cerrar -->
+                <lightning-button-icon class="slds-modal__close" title="Cerrar" icon-name="utility:close"
+                    icon-class="slds-button_icon-inverse" onclick={handleDialogClose}></lightning-button-icon> <!--TODO-LABEL-->
+
+                <template if:true={hasHeaderString}>
+                    <h2 class="slds-text-heading_medium slds-hyphenate header-string">
+                        {header}
+                    </h2>
+                </template>
+                <template if:false={hasHeaderString}>
+                    <h2 class="slds-text-heading_medium slds-hyphenate header-slot">
+                        <slot name="header"></slot>
+                    </h2>
+                </template>
+
+                <p class="slds-m-top_x-small modal-hidden">
+                    <slot name="tagline" onslotchange={handleSlotTaglineChange}></slot>
+                </p>
+
+            </header>
+
+            <!-- BODY -->
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <slot></slot>
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="slds-modal__footer modal-hidden">
+                <slot name="footer" onslotchange={handleSlotFooterChange}></slot>
+            </footer>
+        </div>
+
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

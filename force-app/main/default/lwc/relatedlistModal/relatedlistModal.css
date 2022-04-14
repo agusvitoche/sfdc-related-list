@@ -1,0 +1,9 @@
+.modal-hidden {
+    display: none;
+}
+lightning-button.slds-m-around_xx-small.lightning-record-form-cancel {
+    display: none;
+}
+lightning-button.slds-m-around_xx-small.lightning-record-form-submit {
+    display: none;
+}

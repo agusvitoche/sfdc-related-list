@@ -1,0 +1,38 @@
+<!--
+  @description       : LWC to mimic Salesforce standard new and edit popup
+  @author            : Agustín M. Etcheverry
+  @last modified on  : 04-15-2022
+  @last modified by  : Agustín M. Etcheverry
+-->
+<template>
+    <template if:true={showModal}>
+
+        <!-- General popup component -->
+        <c-relatedlist-modal onclosedialog={handleDialogClose}>
+
+            <!-- HEADER -->
+            <span slot="header">{header}</span>
+
+            <!-- BODY -->
+            <slot>
+                <!-- Componente de formulario estandar -->
+                <lightning-record-form
+                    class="record-form"
+                    record-id={recordId}
+                    object-api-name={sObjectApiName}
+                    layout-type="Full" 
+                    columns="2"
+                    density="compact"
+                    mode="edit"
+                    onsuccess={handleSuccess}>
+                </lightning-record-form>
+            </slot>
+            
+            <!-- FOOTER -->
+            <span slot="footer">
+                <lightning-button variant="neutral" label="Cancelar" title="Cancelar" onclick={handleClose} ></lightning-button> <!--TODO-LABEL-->
+                <lightning-button variant="brand" label="Guardar" title="Guardar" onclick={handleSave} class="slds-m-left_x-small"></lightning-button> <!--TODO-LABEL-->
+            </span>
+        </c-relatedlist-modal>
+    </template>
+</template>

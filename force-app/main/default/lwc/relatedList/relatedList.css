@@ -1,0 +1,28 @@
+.lightning-card {
+    width: 100%;
+}
+.slds-page-header {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: var(--lwc-borderWidthThin) solid #DDDBDA;
+}
+.slds-card__header {
+    padding: var(--lwc-varSpacingVerticalSmall,0.75rem) var(--lwc-varSpacingHorizontalMedium,1rem) var(--lwc-varSpacingVerticalSmall,0.75rem);
+    margin: 0 0 0;  
+}
+.slds-card__footer {
+    margin-top: -1px;
+}
+.slds-card.slds-card_boundary {
+    width: 100%;
+}
+.related-list .slds-button_icon-bare {
+	display: none;
+}
+.related-list a span {
+	color: rgba(27, 82, 151, 1.0);
+}
+.related-list .slds-scrollable_x {
+	overflow-y:visible;
+	overflow-x:visible;
+}
